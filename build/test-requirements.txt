@@ -1,0 +1,21 @@
+# pin setoptconf to prevent issue with 'use_2to3'
+setoptconf==0.3.0
+
+flake8
+bandit
+pylint
+pycodestyle
+pydocstyle
+prospector
+pytest
+flask
+fastapi
+uvicorn
+django
+
+# Integrated TensorBoard tests
+tensorboard
+torch-tb-profiler
+
+# extension build tests
+freezegun
