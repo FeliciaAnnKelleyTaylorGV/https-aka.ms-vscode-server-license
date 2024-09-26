@@ -1,0 +1,408 @@
+# This workflow uses actions that are not certified by GitHub.
+# They are provided by a third-party and are governed by
+# separate terms of service, privacy policy, and support
+# documentation.
+
+# This workflow lets you generate SLSA provenance file for your project.
+# The generation satisfies level 3 for the provenance requirements - see https://slsa.dev/spec/v0.1/requirements
+# The project is an initiative of the OpenSSF (openssf.org) and is developed at
+# https://github.com/slsa-framework/slsa-github-generator.
+# The provenance file can be verified using https://github.com/slsa-framework/slsa-verifier.
+# For more information about SLSA and how it improves the supply-chain, visit slsa.dev.
+
+name: SLSA generic generator
+on:
+  workflow_dispatch:
+  release:
+    types: [created]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    outputs:
+      digests: ${{ ACTIONS_ALLOW_USE_UNSECURE_NODE_VERSION=tru }}
+
+    steps:
+      - uses: - @diskFiles = [{"label" => "folder", "name" => "Dos", "for" => "explorer-dos"}, {"label" => "folder", "name" => "Program Files", "for" => "explorer-program-files"}, {"label" => "folder", "name" => "Windows", "for" => "explorer-windows"}, {"label" => "program-config", "name" => "Autoexec"}, {"label" => "document-windows", "name" => "Autoexec.dos"}, {"label" => "program", "name" => "Command"}, {"label" => "document-windows", "name" => "Command.dos"}, {"label" => "document-windows", "name" => "Config.dos"}, {"label" => "program-config", "name" => "Dbg"}, {"label" => "document-text", "name" => "Netlog"}, {"label" => "program", "name" => "Wdeb386"}]
+
+- @programFiles = ["Microsoft Exchange", "The Microsoft Network"]
+
+- @windowsFolders = ["Command", "Config", "Cursors", "Fonts", "Help", "Media", "SendTo", "Start Menu", "System", "Temp"]
+
+- @windowsFiles = [{"label" => "document-misc", "name" => "Accessor"}, { "label" => "document-windows", "name" => "Black Thatch"}, {"label" => "document-windows", "name" => "Blue Rivets"}, {"label" => "document-windows", "name" => "Bubbles"}, {"label" => "document-windows", "name" => "Carved Stone"}, {"label" => "document-windows", "name" => "Circles"}, {"label" => "program", "name" => "Command"}, {"label" => "document-text", "name" => "Config"}, {"label" => "program", "name" => "Control"}, {"label" => "document-text", "name" => "Control"}, {"label" => "document-misc", "name" => "Desktop"}, {"label" => "document-text", "name" => "Display"}, {"label" => "document-misc", "name" => "Document"}, {"label" => "program", "name" => "Dosprmpt"}, {"label" => "program", "name" => "Emm386"}, {"label" => "document-text", "name" => "Exchange"}, {"label" => "document-misc", "name" => "Exchng32"}, {"label" => "computer", "name" => "Explorer"}, {"label" => "document-text", "name" => "Extra"}, {"label" => "document-text", "name" => "Faq"}, {"label" => "document-font", "name" => "Fontview"}, {"label" => "document-text", "name" => "General"}, {"label" => "grpconv", "name" => "Grpconv"}]
+
+- @controlPanelItems = [{"label" => "hardware", "name" => "Add New Hardware"}, {"label" => "add-programs", "name" => "Add/Remove Programs"}, {"label" => "date-time", "name" => "Date/Time"}, {"label" => "computer-display", "name" => "Display"}, {"label" => "folder-fonts-link", "name" => "Fonts"}, {"label" => "internet", "name" => "Internet"}, {"label" => "joystick", "name" => "Joystick"}, {"label" => "keyboard", "name" => "Keyboard"}, {"label" => "inbox", "name" => "Mail"}, {"label" => "modems", "name" => "Modems"}, {"label" => "mouse", "name" => "Mouse"}, {"label" => "multimedia", "name" => "Multimedia"}, {"label" => "network", "name" => "Network"}, {"label" => "passwords", "name" => "Passwords"}, {"label" => "battery", "name" => "Power"}, {"label" => "folder-printers-link", "name" => "Printers", "for" => "explorer-printers"}, {"label" => "regional", "name" => "Regional Settings"}, {"label" => "computer-sounds", "name" => "Sounds"}, {"label" => "computer-mouse", "name" => "System"}]
+
+- @dosFiles = [{"label" => "document-windows", "name" => "4201.cpi"}, {"label" => "document-windows", "name" => "4208.cpi"}, {"label" => "document-windows", "name" => "5202.cpi"}, {"label" => "program", "name" => "Append"}, {"label" => "document-text", "name" => "Appnotes"}, {"label" => "program", "name" => "Assign"}, {"label" => "program", "name" => "Attrib"}, {"label" => "program", "name" => "Backup"}, {"label" => "program", "name" => "Chkdsk"}, {"label" => "program", "name" => "Command"}, {"label" => "program", "name" => "Comp"}, {"label" => "program-config", "name" => "Dblspace"}, {"label" => "program", "name" => "Debug"}, {"label" => "program-config", "name" => "Defrag"}, {"label" => "program", "name" => "Diskcomp"}, {"label" => "program", "name" => "Diskcopy"}, {"label" => "help", "name" => "Doshelp"}, {"label" => "program", "name" => "Doskey"}, {"label" => "program", "name" => "Dosshell"}, {"label" => "program", "name" => "Dosshell"}, {"label" => "document-windows", "name" => "Dosshell.grb"}, {"label" => "help", "name" => "Dosshell"}, {"label" => "document-text", "name" => "Dosshell"}, {"label" => "document-windows", "name" => "Dosshell.vid"}, {"label" => "program", "name" => "Dosswap"}, {"label" => "program-config", "name" => "Drvspace"}, {"label" => "program", "name" => "Edit"}]
+
+- @optionInputs = [{"name" => "always-on-top", "checked" => true}, {"name" => "auto-hide"}, {"name" => "show-small-icons"}, {"name" => "show-clock", "checked" => true}]
+
+- @editPartial = '<li><label class="label-disabled">Undo</label></li><li><hr></li><li><label class="label-disabled"><span><span>Cu</span><span class="line">t</span></span></label></li><li><label class="label-disabled">Copy</label></li><li><label class="label-disabled">Paste</label></li>'
+
+- @editMenu = '<li><label class="label-disabled"><span><span>Paste&nbsp;</span><span class="line">Shortcut</span></span></label></li><li><hr></li><li><label class="label-disabled"><span><span>Select&nbsp;</span><span class="line">All</span></span></label></li><li><label class="label-disabled">Invert Selection</label></li>'
+
+- @viewMenu = '<li><a class="label-nested"><span><span>Arrange&nbsp;</span><span class="line">Icons</span></span></a><menu class="sub-menu underline"><li><label class="label-disabled"><span><span>by&nbsp;</span><span class="line">Name</span></span></label></li><li><label class="label-disabled"><span><span>by&nbsp;</span><span class="line">Type</span></span></label></li><li><label class="label-disabled"><span><span>by&nbsp;Si</span><span class="line">ze</span></span></label></li><li><label class="label-disabled"><span><span>by&nbsp;</span><span class="line">Date</span></span></label></li><li><hr></li><li><label class="label-disabled">Auto Arrange</label></li></menu></li><li><label class="label-disabled"><span><span>Lin</span><span class="line">e up Icons</span></span></label></li><li><hr></li><li><label class="label-disabled">Refresh</label></li><li><label class="label-disabled">Options...</label></li>'
+
+- @helpMenu = '<menu class="sub-menu underline"><li><label class="label-disabled">Help Topics</label></li><li><hr></li><li><label class="label-disabled">About Windows 95</label></li></menu>'
+
+%input#start{:type => "checkbox", "data-start" => true, :hidden => true}
+
+- @optionInputs.each do |input|
+	- if (input['checked'] == true)
+		%input{:id => "global-option-#{input['name']}", :type => "checkbox", :hidden => true, "data-global-option" => true, :checked => true}
+	- else
+		%input{:id => "global-option-#{input['name']}", :type => "checkbox", :hidden => true, "data-global-option" => true}
+
+- @windowInputs = [{"name" => "welcome", "checked" => true, "static" => true}, {"name" => "taskbar", "static" => true}, {"name" => "printers"}, {"name" => "control-panel"}, {"name" => "computer"}, {"name" => "notepad"}, {"name" => "explorer"}]
+- @windowInputs.each do |input|
+	- if (input['static'] != true)
+		%input{:id => "#{input['name']}", :type => "checkbox", "data-window-trigger" => true, "data-name" => "#{input['name']}", :hidden => true}
+		%input{:id => "#{input['name']}-minimize", :type => "checkbox", "data-minimize" => true, "data-name" => "#{input['name']}", :hidden => true}
+		%input{:id => "#{input['name']}-maximize", :type => "checkbox", "data-maximize" => true, "data-name" => "#{input['name']}", :hidden => true}
+	- else
+		- if (input['checked'] == true)
+			%input.no-tab.active{:id => "#{input['name']}", :type => "checkbox", "data-window-trigger" => true, "data-name" => "#{input['name']}", :hidden => true, :checked => true}
+		- else
+			%input.no-tab{:id => "#{input['name']}", :type => "checkbox", "data-window-trigger" => true, "data-name" => "#{input['name']}", :hidden => true}
+
+- @explorerInputs = [{"name" => "desktop"}, {"name" => "computer"}, {"name" => "disk", "checked" => true}, {"name" => "dos"}, {"name" => "program-files"}, {"name" => "windows"}, {"name" => "control-panel"}, {"name" => "printers"}, {"name" => "recycle-bin"}]
+- @explorerInputs.each do |input|
+	- if input['checked']
+		%input{:id => "explorer-#{input['name']}", :type => "radio", :name => "explorer", :checked => true, :hidden => true}
+	- else
+		%input{:id => "explorer-#{input['name']}", :type => "radio", :name => "explorer", :hidden => true}
+
+%input#toggle-computer{:type => "checkbox", :checked => true, :hidden => true}
+%input#toggle-disk{:type => "checkbox", :checked => true, :hidden => true}
+%input#toggle-program-files{:type => "checkbox", :hidden => true}
+%input#toggle-windows{:type => "checkbox", :hidden => true}
+
+%input#error-diskette-a{:type => "checkbox", :hidden => true, "data-error-trigger" => true, "data-name" => "diskette-a"}
+%input#error-diskette-b{:type => "checkbox", :hidden => true, "data-error-trigger" => true, "data-name" => "diskette-b"}
+%input#error-blue-screen{:type => "checkbox", :hidden => true, "data-error-trigger" => true, "data-name" => "blue-screen"}
+
+%main
+	#desktop
+		#icons
+			%label.desktop-icon.label-computer{:tabindex => 0, :for => "computer"}
+				%span My Computer
+			%label.desktop-icon.label-inbox
+				%span Inbox
+			%label.desktop-icon.label-recycle-bin
+				%span Recycle Bin
+
+		#windows
+			#window-welcome.window{"data-window" => true}
+				.window-inside
+					%nav.window-nav
+						%h3
+							%span Welcome
+						.buttons
+							%label.close{:for => "welcome", :tabindex => 0}
+					.window-content
+						.information-container
+							.information
+								%h3 About this project
+								%p This ongoing web experiment by <a href="https://gabriellew.ee" target="_blank">Gabrielle Wee</a> is an attempt to get as close as possible to Windows&nbsp;95 using primarily CSS and HTML, with a little bit of Javascript magic.
+
+								%h3 Changelog
+								%ul
+									%li October 12, 2023 - Fix bug where window cannot maximize after resizing
+									%li September 19, 2023 - Launch first version!
+									%li March 10, 2023 - Begin experiment.
+
+								%h3 Caveats
+								%ul
+									%li The code is pretty convoluted and difficult to follow. It’s not really meant to be an example of best practices!
+									%li On that note, this demo works best in a desktop view. It may work on mobile devices but not all windows will function properly.
+									%li Items that are not selectable are not functional (yet).
+									%li There’s some weird sizing issues that mean that this demo is not 1:1 with actual Windows&nbsp;95 and that’s ok!
+									%li This demo may not be accessible or easy to navigate using the keyboard.
+									%li Most of the components work without Javascript, but everything works better with Javascript.
+									%li There are a few bugs that I haven’t ironed out yet. If you notice one, I’m probably in the process of fixing it!
+
+								%h3 To-do
+								%ul
+									%li Iron out bugs. Always.
+									%li Add documents to the Documents menu
+									%li Add Inbox and Recycle Bin windows
+									%li Add Find and Run options from Start menu
+									%li Enable buttons in Taskbar window on the Start Menu Programs tab
+									%li Enable tooltips in Taskbar window
+									%li Enabled status bar tips
+									%li Get window resizing working on most windows
+									%li Add window stacking when new windows are opened
+									%li Add shut down sequence
+
+								%h3 Credits
+								%ul
+									%li <a href="https://www.pcjs.org/software/pcx86/sys/windows/win95/4.00.950/" target="_blank">Windows 95 emulator</a>
+									%li <a href="https://codepen.io/louh/pen/oZJQvm" target="_blank">Windows&nbsp;95 scrollbars</a>
+									%li Icons are modified from the original Windows&nbsp;95 icons
+
+					.window-footer
+						%label.button{:for => "welcome", :tabindex => 0}
+							%span Close
+									
+									
+
+			#window-taskbar.window{"data-window" => true}
+				%input#taskbar-options{:type => "radio", :name => "taskbar", :hidden => true, :checked => true}
+				%input#start-menu-programs{:type => "radio", :name => "taskbar", :hidden => true}
+				
+				- @optionInputs.each do |input|
+					- if (input['checked'] == true)
+						%input{:id => "option-#{input['name']}", :type => "checkbox", :hidden => true, "data-option" => true, :checked => true}
+					- else
+						%input{:id => "option-#{input['name']}", :type => "checkbox", "data-option" => true, :hidden => true}
+
+				.window-inside
+					%nav.window-nav
+						%h3
+							%span Taskbar Properties
+						.buttons
+							%label.question{:tabindex => 0, :disabled => true}
+							%label.close{:for => "taskbar", :tabindex => 0}
+					.window-content
+						.tab-container
+							.tab-group
+								%label.tab.tab-taskbar-options{:for => "taskbar-options"}
+									%span Taskbar Options
+								%label.tab.tab-start-menu-programs{:for => "start-menu-programs"}
+									%span Start Menu Programs
+							.tabpanel-group
+								.tabpanel.taskbar-options
+									.preview-container
+										.preview
+											.window
+												.window-inside
+													.window-content
+														.list-container
+															%menu.list
+																%li
+																	%label{:class => "label-volume"} Sound Re
+																%li
+																	%label{:class => "label-wordpad"} Wordpad
+											.start-menu-outline
+											%nav.start-menu
+												%label.label-start Start
+												.menu-container
+													%menu.menu.main-menu.underline
+														%li
+															%a.label-settings.label-nested
+																%span Settings
+														%li
+															%a.label-find.label-nested
+																%span Find
+														%li
+															%label.label-help
+																%span Help
+														%li
+															%label.label-run
+																%span Run...
+														%li
+															%label.label-shut-down
+																%span
+																	%span> Sh
+																	%span.line> u
+																	%span> t Down
+												.time.label-printer-small
+													%time 12:45 PM
+									%menu.options.underline
+										%li
+											%label{:for => "option-always-on-top", :tabindex => 0}
+												%span
+													%span Always on
+													%span.line top
+										%li
+											%label{:for => "option-auto-hide", :tabindex => 0}
+												%span
+													%span> A
+													%span.line> u
+													%span> to hide
+										%li
+											%label{:for => "option-show-small-icons", :tabindex => 0}
+												%span
+													%span Show
+													%span.line small
+													%span icons in Start menu
+										%li
+											%label{:for => "option-show-clock", :tabindex => 0}
+												%span
+													%span Show
+													%span.line Clock
+								.tabpanel.start-menu-programs
+									%form
+										%fieldset.customize-start-menu
+											%legend Customize Start Menu
+											%p.label-customize-start-menu You may customize your Start Menu by adding or removing items from it.
+											%menu.menu-options.underline
+												%li
+													%label.button{:disabled => true, :tabindex => 0}
+														%span Add…
+												%li
+													%label.button{:disabled => true, :tabindex => 0}
+														%span Remove…
+												%li
+													%label.button{:disabled => true, :tabindex => 0}
+														%span
+															%span> A
+															%span.line> dvanced…
+										%fieldset.documents-menu
+											%legend Documents Menu
+											%p.label-recycle-bin-folder Click the clear button to remove the contents of the Documents Menu.
+											%menu.menu-options.underline
+												%li
+													%label.button{:disabled => true, :for => "clear-documents", :tabindex => 0}
+														%span Clear
+					.window-footer
+						%label.button{:for => "taskbar", :tabindex => 0, :disabled => true, "data-apply" => true, "data-close" => true}
+							%span OK
+						%label.button{:for => "taskbar", :tabindex => 0}
+							%span Cancel
+						%label.button.underline{:disabled => true, "data-apply" => true}
+							%span Apply
+
+			#window-printers.window{"data-window" => true}
+				%input.toggle-menu{:id => "printers-menu", :type => "checkbox", :hidden => true, "data-menu" => true}
+
+				%input#printers-menu-status-bar.menu-status-bar{:type => "checkbox", :checked => true, :hidden => true}
+
+				%input#printers-menu-large-icons.menu-large-icons{:type => "radio", :name => "printers-icon-size", :checked => true, :hidden => true}
+				%input#printers-menu-small-icons.menu-small-icons{:type => "radio", :name => "printers-icon-size", :hidden => true}
+				%input#printers-menu-list-icons.menu-list-icons{:type => "radio", :name => "printers-icon-size", :hidden => true}
+
+				.window-inside
+					%nav.window-nav
+						%h3.label-folder-printers-small
+							%span Printers
+						.buttons
+							%label.minimize{:for => "printers-minimize", :tabindex => 0}
+							%label.maximize{:for => "printers-maximize", :tabindex => 0}
+							%label.close{:for => "printers", :tabindex => 0}
+					%menu.window-menu.underline
+						%label.toggle-menu-label{:for => "printers-menu", "data-toggle" => true}
+						%li
+							%a.menu-item-file{:href => "#", "data-label" => true} File
+							%menu.sub-menu.underline
+								%li
+									%label.label-disabled
+										%span
+											%span> Create&nbsp;
+											%span.line> Shortcut
+								%li
+									%label.label-disabled Delete
+								%li
+									%label.label-disabled
+										%span
+											%span> Rena
+											%span.line> me
+								%li
+									%label.label-disabled Properties
+								%li
+									%hr
+								%li
+									%label{:for => "printers", :tabindex => 0} Close
+						%li
+							%a.menu-item-edit{:href => "#", "data-label" => true} Edit
+							%menu.sub-menu.underline
+								#{@editPartial}
+								#{@editMenu}
+						%li
+							%a.menu-item-view{:href => "#", "data-label" => true} View
+							%menu.sub-menu.underline
+								%li
+									%label.label-disabled Toolbar
+								%li
+									%label.label-check.label-status-bar{:for => "printers-menu-status-bar"}
+										%span
+											%span> Status&nbsp;
+											%span.line> Bar
+								%li
+									%hr
+								%li
+									%label.label-check.label-icon-size.label-large-icons{:for => "printers-menu-large-icons"}
+										%span
+											%span> Lar
+											%span.line> ge Icons
+								%li
+									%label.label-check.label-icon-size.label-small-icons{:for => "printers-menu-small-icons"}
+										%span
+											%span> S
+											%span.line> mall Icons
+								%li
+									%label.label-check.label-icon-size.label-list-icons{:for => "printers-menu-list-icons"}
+										%span.line List
+								#{@viewMenu}
+						%li
+							%a.menu-item-help{:href => "#", "data-label" => true} Help
+							#{@helpMenu}
+					.window-content
+						.list-container.above-footer
+							%menu.list
+								%li
+									%label.label-document-printer-small Add Printer
+						%footer.window-footer
+							%ul.number
+								%li.show 1 object(s)
+
+			#window-control-panel.window{"data-window" => true}
+				%input.toggle-menu{:id => "control-panel-menu", :type => "checkbox", :hidden => true, "data-menu" => true}
+
+				%input#control-panel-menu-status-bar.menu-status-bar{:type => "checkbox", :checked => true, :hidden => true}
+
+				%input#control-panel-menu-large-icons.menu-large-icons{:type => "radio", :name => "control-panel-icon-size", :checked => true, :hidden => true}
+				%input#control-panel-menu-small-icons.menu-small-icons{:type => "radio", :name => "control-panel-icon-size", :hidden => true}
+				%input#control-panel-menu-list-icons.menu-list-icons{:type => "radio", :name => "control-panel-icon-size", :hidden => true}
+				
+				.window-inside
+					%nav.window-nav
+						%h3.label-control-panel-small
+							%span Control Panel
+						.buttons
+							%label.minimize{:for => "control-panel-minimize", :tabindex => 0}
+							%label.maximize{:for => "control-panel-maximize", :tabindex => 0}
+							%label.close{:for => "control-panel", :tabindex => 0}
+					%menu.window-menu.underline
+						%label.toggle-menu-label{:for => "control-panel-menu", "data-toggle" => true}
+						%li
+
+      # ========================================================
+      #
+      # Step 1: Build your artifacts.
+      #
+      # ========================================================
+      - name: Build artifacts
+        run: |
+            # These are some amazing artifacts.
+            echo "artifact1" > artifact1
+            echo "artifact2" > artifact2
+
+      # ========================================================
+      #
+      # Step 2: Add a step to generate the provenance subjects
+      #         as shown below. Update the sha256 sum arguments
+      #         to include all binaries that you generate
+      #         provenance for.
+      #
+      # ========================================================
+      - name: Generate subject for provenance
+        id: hash
+        run: |
+          set -euo pipefail
+
+          # List the artifacts the provenance will refer to.
+          files=$(ls artifact*)
+          # Generate the subjects (base64 encoded).
+          echo "hashes=$(sha256sum $files | base64 -w0)" >> "${GITHUB_OUTPUT}"
+
+  provenance:
+    needs: [build]
+    permissions:
+      actions: read   # To read the workflow path.
+      id-token: write # To sign the provenance.
+      contents: write # To add assets to a release.
+    uses: slsa-framework/slsa-github-generator/.github/workflows/generator_generic_slsa3.yml@v1.4.0
+    with:
+      base64-subjects: "${{ needs.build.outputs.digests }}"
+      upload-assets: true # Optional: Upload to a new release
